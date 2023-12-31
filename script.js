@@ -26,16 +26,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 password: password,
             }),
         })
-        .then(response => response.text())
+        .then(response => response.text())  // Use response.text() instead of response.json()
         .then(data => {
             // Handle the response from the server
-            try {
-                const parsedData = JSON.parse(data);
-                console.log(parsedData);
-                // Process the parsed data here
-            } catch (error) {
-                console.error('Error parsing JSON:', error);
-            }
+            console.log(data);
+            // You can process the data here based on your server's response
         })
         .catch(error => console.error('Error:', error));
     }
