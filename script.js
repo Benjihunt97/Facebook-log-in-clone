@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Use AJAX or fetch API to send data to the server
         // For simplicity, this example does not include the actual AJAX code
         // You may want to use a library like Axios or the native fetch API
-        fetch('login.php', {
+        fetch('/api/login.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
