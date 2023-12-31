@@ -2,17 +2,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('loginForm');
 
     loginForm.addEventListener('submit', function(event) {
-        event.preventDefault();
+        event.preventDefault(); // Prevent the default form submission behavior
 
         // Collect user input
         const email = document.getElementsByName('email')[0].value;
         const password = document.getElementsByName('password')[0].value;
-
-        // Simple client-side validation
-        if (email.trim() === '' || password.trim() === '') {
-            alert('Please enter both email and password.');
-            return;
-        }
 
         // Send user data to the server for validation and processing
         loginUser(email, password);
@@ -32,11 +26,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 password: password,
             }),
         })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(data => {
             // Handle the response from the server
-            console.log(data);
-            // You may want to redirect the user or perform other actions based on the response
+            try {
+                const parsedData = JSON.parse(data);
+                console.log(parsedData);
+                // Process the parsed data here
+            } catch (error) {
+                console.error('Error parsing JSON:', error);
+            }
         })
         .catch(error => console.error('Error:', error));
     }
